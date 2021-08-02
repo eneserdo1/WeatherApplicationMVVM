@@ -2,6 +2,7 @@ package com.app.weatherapplicationmvvm.di
 
 import com.app.weatherapplicationmvvm.BuildConfig
 import com.app.weatherapplicationmvvm.data.remote.ApiService
+import com.app.weatherapplicationmvvm.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +17,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-    /*@Provides
-    fun provideBaseUrl() = Constants.BASE_URL*/
+
+
+    @Provides
+    @Singleton
+    fun provideBaseUrl() = Constants.BASE_URL
 
     @Provides
     @Singleton

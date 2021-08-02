@@ -22,11 +22,12 @@ class MainViewModel @Inject constructor(private val repository:Repository) : Vie
         fetchWeather()
     }
 
-    private fun fetchWeather() {
+    fun fetchWeather() {
         var query = HashMap<String,String>()
         query.put("lat","37.339856")
         query.put("lon","28.156679")
         query.put("exclude","daily")
+        query.put("appid","393a58535012ef9a818cf62884e2317a")
 
         viewModelScope.launch {
             weathers.postValue(Resource.loading(null))

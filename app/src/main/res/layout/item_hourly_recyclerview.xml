@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="120dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginHorizontal="2dp"
+    android:paddingVertical="3dp"
+    android:background="@drawable/item_hourly_background"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:id="@+id/itemHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="13sp"
+        android:textColor="@color/blu_pastel"
+        android:fontFamily="@font/avenir_light_07"
+        tools:text="23.00"
+
+        />
+    <TextView
+        android:id="@+id/itemTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:minLines="1"
+        android:textColor="@color/blu_pastel"
+        android:fontFamily="@font/avenir_medium_09"
+        tools:text="35"
+        />
+
+    <ImageView
+        android:id="@+id/itemImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+    <TextView
+        android:id="@+id/itemWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:textColor="@color/blu_pastel"
+        android:fontFamily="@font/avenir_medium_09"
+        tools:text="5.3km/s"
+        android:drawableStart="@drawable/drop_up_24"
+        />
+
+
+</LinearLayout>
