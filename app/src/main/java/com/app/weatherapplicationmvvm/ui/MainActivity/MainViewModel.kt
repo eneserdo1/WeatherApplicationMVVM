@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.app.weatherapplicationmvvm.data.Repository
 import com.app.weatherapplicationmvvm.model.WeatherResponse
 import com.app.weatherapplicationmvvm.model.Resource
+import com.app.weatherapplicationmvvm.utils.Constants.Companion.API_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -26,7 +27,7 @@ class MainViewModel @Inject constructor(private val repository:Repository) : Vie
         query.put("lat","37.339856")
         query.put("lon","28.156679")
         query.put("exclude","daily")
-        query.put("appid","393a58535012ef9a818cf62884e2317a")
+        query.put("appid",API_KEY)
         compositeDisposable.add(
             repository.fetchWeatherData(query)
                 .observeOn(AndroidSchedulers.mainThread())
