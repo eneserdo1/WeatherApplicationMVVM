@@ -3,20 +3,19 @@ package com.app.weatherapplicationmvvm.ui.MainActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.app.weatherapplicationmvvm.data.Repository
-import com.app.weatherapplicationmvvm.data.model.WeatherResponse
-import com.app.weatherapplicationmvvm.utils.Resource
+import com.app.weatherapplicationmvvm.model.WeatherResponse
+import com.app.weatherapplicationmvvm.model.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository:Repository) : ViewModel() {
 
-    private val weathers = MutableLiveData<Resource<WeatherResponse>>()
+    private val _weathers = MutableLiveData<Resource<WeatherResponse>>()
+    private val compositeDisposable = CompositeDisposable()
 
     init {
         fetchWeather()
@@ -28,7 +27,16 @@ class MainViewModel @Inject constructor(private val repository:Repository) : Vie
         query.put("lon","28.156679")
         query.put("exclude","daily")
         query.put("appid","393a58535012ef9a818cf62884e2317a")
+        compositeDisposable.add(
+            repository.fetchWeatherData(query)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{response->
+                    _weathers.postValue(response)
+                }
 
+        )
+
+        /*
         viewModelScope.launch {
             weathers.postValue(Resource.loading(null))
             repository.fetchWeatherData(query)
@@ -39,10 +47,15 @@ class MainViewModel @Inject constructor(private val repository:Repository) : Vie
                     weathers.postValue(Resource.success(it))
                 }
 
-        }
+        }*/
     }
 
     fun getWeather(): LiveData<Resource<WeatherResponse>>{
-        return weathers
+        return _weathers
+    }
+
+    override fun onCleared() {
+        compositeDisposable.clear()
+        super.onCleared()
     }
 }

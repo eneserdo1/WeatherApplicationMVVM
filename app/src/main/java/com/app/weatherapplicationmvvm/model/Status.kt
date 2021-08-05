@@ -1,4 +1,4 @@
-package com.app.weatherapplicationmvvm.utils
+package com.app.weatherapplicationmvvm.model
 
 enum class Status {
     SUCCESS,

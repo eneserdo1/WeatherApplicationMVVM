@@ -1,5 +1,10 @@
 package com.app.weatherapplicationmvvm.utils
 
+import com.app.weatherapplicationmvvm.model.WeatherResponse
+import com.app.weatherapplicationmvvm.network.ApiService
+import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
+
 class Constants {
 
     companion object{

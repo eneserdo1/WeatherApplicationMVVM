@@ -7,14 +7,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.weatherapplicationmvvm.data.model.WeatherResponse
+import com.app.weatherapplicationmvvm.model.WeatherResponse
 import com.app.weatherapplicationmvvm.databinding.ActivityMainBinding
 import com.app.weatherapplicationmvvm.utils.Constants.Companion.IMAGE_URL
-import com.app.weatherapplicationmvvm.utils.Status
+import com.app.weatherapplicationmvvm.model.Status
 import com.app.weatherapplicationmvvm.utils.calculatCelcius
 import com.app.weatherapplicationmvvm.utils.getDateTime
 import com.bumptech.glide.Glide
-import com.xw.repo.widget.BounceScrollView
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupObserver() {
         viewModel.getWeather().observe(this, Observer {
             when (it.status) {
+
                 Status.ERROR -> {
                     Toast.makeText(this, "Veri çekilemedi", Toast.LENGTH_LONG).show()
                     binding.progressBar.visibility = View.GONE
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                     adapter.setList(it.data.hourly)
                     binding.progressBar.visibility = View.GONE
                 }
+
             }
         })
     }

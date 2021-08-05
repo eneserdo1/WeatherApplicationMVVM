@@ -1,7 +1,7 @@
 package com.app.weatherapplicationmvvm.di
 
 import com.app.weatherapplicationmvvm.data.Repository
-import com.app.weatherapplicationmvvm.data.remote.ApiService
+import com.app.weatherapplicationmvvm.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +15,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideRepository(
-        service: ApiService,
+            apiService: ApiService,
     ): Repository {
-        return Repository(service)
+        return Repository(apiService)
     }
 }

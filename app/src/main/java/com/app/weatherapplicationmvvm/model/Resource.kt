@@ -1,4 +1,4 @@
-package com.app.weatherapplicationmvvm.utils
+package com.app.weatherapplicationmvvm.model
 
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {

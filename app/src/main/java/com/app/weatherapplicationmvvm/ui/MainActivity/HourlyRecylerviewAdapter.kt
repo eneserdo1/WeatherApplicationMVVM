@@ -3,7 +3,7 @@ package com.app.weatherapplicationmvvm.ui.MainActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.weatherapplicationmvvm.data.model.Hourly
+import com.app.weatherapplicationmvvm.model.Hourly
 import com.app.weatherapplicationmvvm.databinding.ItemHourlyRecyclerviewBinding
 import com.app.weatherapplicationmvvm.utils.Constants
 import com.app.weatherapplicationmvvm.utils.calculatCelcius
@@ -24,7 +24,7 @@ class HourlyRecylerviewAdapter : RecyclerView.Adapter<HourlyRecylerviewAdapter.M
         fun bind(data:Hourly) = with(itemView){
             binding.apply {
                 itemHour.text = getDateTime(data.dt,"hh:mm")
-                itemTemp.text = calculatCelcius(data.temp)
+                itemTemp.text = "${calculatCelcius(data.temp)}°C"
                 itemWind.text =" ${data.wind_speed.toString()}km/s"
                 Glide.with(itemView).load("${Constants.IMAGE_URL}${data.weather[0].icon}.png").into(itemImage)
             }
